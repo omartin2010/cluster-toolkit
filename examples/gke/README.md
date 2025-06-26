@@ -39,33 +39,29 @@ Calendar Mode is for workloads that require a precise start time and have a defi
 
 ### Spot
 
-Spot VMs provide access to compute resources at a lower price but can be preempted by Compute Engine at any time if those resources are needed elsewhere[cite: 161, 232].
+Spot VMs provide access to compute resources at a lower price but can be preempted by Compute Engine at any time if those resources are needed elsewhere.
 
-* **Ideal Workloads**: Best for fault-tolerant workloads where interruptions are acceptable, such as batch processing, high-performance computing (HPC), and continuous integration/continuous deployment (CI/CD)[cite: 234, 235, 236, 237].
+* **Ideal Workloads**: Best for fault-tolerant workloads where interruptions are acceptable, such as batch processing, high-performance computing (HPC), and continuous integration/continuous deployment (CI/CD).
 * **Key Features**:
-    * Offers significant discounts ranging from 60% to 91% for vCPUs, GPUs, and Local SSD disks[cite: 254].
-    * You can request any GPU machine type[cite: 247].
-    * VMs run until they are stopped, deleted, or preempted by Compute Engine[cite: 251].
+    * Offers significant discounts ranging from 60% to 91% for vCPUs, GPUs, and Local SSD disks.
+    * You can request any GPU machine type.
+    * VMs run until they are stopped, deleted, or preempted by Compute Engine.
 
 ## Choosing the Right Model
 
-The best consumption model depends on your workload's specific requirements for duration, cost sensitivity, and predictability[cite: 138].
+The best consumption model depends on your workload's specific requirements for duration, cost sensitivity, and predictability.
 
 | **Model** | **Best For** | **Duration** | **Availability** | **Pricing** |
 | :--- | :--- | :--- | :--- | :--- |
-| **DWS Flex Mode** | Batch jobs, fine-tuning, experiments [cite: 7, 11] | Up to 7 days [cite: 7, 15] | Queued until capacity is available [cite: 14] | Discounted (up to 53%) [cite: 145, 221] |
-| **DWS Calendar Mode**| Time-bound workloads, advance capacity reservation [cite: 8, 24] | Fixed durations (e.g., 7 or 14 days) [cite: 26] | Reserved for a future start time [cite: 27] | Discounted (up to 53%) [cite: 145] |
-| **Spot** | Fault-tolerant, non-urgent tasks [cite: 231, 234] | Can be preempted at any time [cite: 232] | Immediate, based on availability [cite: 231] | Deeply discounted (60-91%) [cite: 254] |
+| **DWS Flex Mode** | Batch jobs, fine-tuning, experiments | Up to 7 days | Queued until capacity is available | Discounted (up to 53%) |
+| **DWS Calendar Mode**| Time-bound workloads, advance capacity reservation | Fixed durations (e.g., 7 or 14 days) | Reserved for a future start time | Discounted (up to 53%) |
+| **Spot** | Fault-tolerant, non-urgent tasks | Can be preempted at any time | Immediate, based on availability | Deeply discounted (60-91%) |
 
-For detailed steps on creating a GKE cluster and deploying workloads using these models, refer to the official documentation[cite: 34, 45, 53]. The recommended approach for cluster creation is using the Cluster Toolkit[cite: 46, 48].
-
-# Deployments per consumption model
+## Deployment recipes per consumption model
 The links below point to recipes to launch several kinds of accelerators on different consumption models, including `spot`, `on demand`, `dws flex`, `dws calendar` and `reservations`.
-
-
 
 * [a3-highgpu-8g](./gke-a3-highgpu/README.md)
 * [a3-megagpu-8g](./gke-a3-megagpu/README.md)
 * [a3-ultragpu-8g](./gke-a3-ultragpu/README.md)
 * [a4-highgpu-8g](./gke-a4-highgpu/README.md)
-* [a4x-highgpu-4g](./gke-a4x-highgpu/README.md)]
+* [a4x-highgpu-4g](./gke-a4x-highgpu/README.md)
