@@ -22,6 +22,7 @@ import shutil
 import subprocess
 import stat
 import time
+import socket
 import yaml
 from pathlib import Path
 import functools
@@ -440,7 +441,23 @@ def setup_controller():
     run("systemctl restart slurmdbd", timeout=30)
 
     # Wait for slurmdbd to come up
-    time.sleep(5)
+    # time.sleep(5)
+    log.info("Waiting for slurmdbd to be ready...")
+    slurmdbd_host = 'localhost'  # slurmdbd usually listens on localhost
+    slurmdbd_port = 6819
+    timeout = 120  # Total wait time in seconds
+    start_time = time.time()
+    while True:
+        try:
+            with socket.create_connection((slurmdbd_host, slurmdbd_port), timeout=5):
+                log.info(f"slurmdbd is up and listening on port {slurmdbd_port}.")
+                break
+        except (socket.timeout, ConnectionRefusedError):
+            if time.time() - start_time >= timeout:
+                log.error(f"Timed out waiting for slurmdbd to start.")
+                raise Exception("Timed out waiting for slurmdbd")
+            log.info("slurmdbd not ready yet, retrying in 2 seconds...")
+            time.sleep(2)
 
     sacctmgr = f"{slurmdirs.prefix}/bin/sacctmgr -i"
     result = run(
